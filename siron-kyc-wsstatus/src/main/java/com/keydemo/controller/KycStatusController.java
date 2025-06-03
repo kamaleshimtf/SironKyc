@@ -6,6 +6,7 @@ import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
+import org.jboss.resteasy.reactive.RestResponse;
 
 import java.util.List;
 
@@ -22,15 +23,24 @@ public class KycStatusController {
         return Response.ok(wsStatus).build();
     }
 
+    @POST
+    @RolesAllowed("admin")
+    public Response addKycStatus(KycStatusEntity kycStatusEntity) {
+        return Response.status(RestResponse.Status.CREATED.getStatusCode())
+                .entity(kycStatusService.addKycStatus(kycStatusEntity))
+                .build();
+    }
+
     @PUT
     @RolesAllowed("admin")
     public Response getKycStatus(@QueryParam("requestUUID") String requestUUID, KycStatusEntity kycStatusEntity) {
         return Response.ok(kycStatusService.updateKycStatus(requestUUID,kycStatusEntity)).build();
     }
 
-    @GET
-    @Path("hello")
-    public String hello() {
-        return "hello";
+    @DELETE
+    @RolesAllowed("admin")
+    public Response deleteKycStatus(@QueryParam("requestUUID") String requestUUID) {
+        return Response.ok(kycStatusService.deleteKycStatus(requestUUID)).build();
     }
+
 }

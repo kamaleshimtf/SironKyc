@@ -1,4 +1,4 @@
-package com.keydemo.exception;
+package com.imtf.siron.exception;
 
 public class BadRequestException extends RuntimeException {
     public BadRequestException(String message) {

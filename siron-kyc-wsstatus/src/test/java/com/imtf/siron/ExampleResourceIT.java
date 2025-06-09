@@ -1,4 +1,4 @@
-package com.keydemo;
+package com.imtf.siron;
 
 import io.quarkus.test.junit.QuarkusIntegrationTest;
 

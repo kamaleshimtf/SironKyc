@@ -1,4 +1,4 @@
-package com.keydemo.exception;
+package com.imtf.siron.exception;
 
 public class NotFoundException extends RuntimeException {
     public NotFoundException(String message) {

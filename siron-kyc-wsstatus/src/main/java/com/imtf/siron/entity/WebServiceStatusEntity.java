@@ -1,4 +1,4 @@
-package com.keydemo.entity;
+package com.imtf.siron.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,7 +7,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "WSSTATUS", schema = "CLNT0001")
-public class KycStatusEntity {
+public class WebServiceStatusEntity {
 
     @Id
     @Column(name = "WS_REQUEST_UUID", columnDefinition = "NVARCHAR (36)")
@@ -76,11 +76,11 @@ public class KycStatusEntity {
         this.requestTimeEnd = requestTimeEnd;
     }
 
-    public int getReturnCode() {
+    public Integer getReturnCode() {
         return returnCode;
     }
 
-    public void setReturnCode(int returnCode) {
+    public void setReturnCode(Integer returnCode) {
         this.returnCode = returnCode;
     }
 
@@ -132,17 +132,17 @@ public class KycStatusEntity {
         this.serverName = serverName;
     }
 
-    public KycStatusEntity(String wsRequestUuid,
-                           String wsMethodName,
-                           String requestTimeStart,
-                           String requestTimeEnd,
-                           int returnCode,
-                           String scoringTimeStart,
-                           String scoringTimeEnd,
-                           String relatingCustomers,
-                           String asyncRequestId,
-                           Integer tbqFormId,
-                           String serverName) {
+    public WebServiceStatusEntity(String wsRequestUuid,
+                                  String wsMethodName,
+                                  String requestTimeStart,
+                                  String requestTimeEnd,
+                                  Integer returnCode,
+                                  String scoringTimeStart,
+                                  String scoringTimeEnd,
+                                  String relatingCustomers,
+                                  String asyncRequestId,
+                                  Integer tbqFormId,
+                                  String serverName) {
         this.wsRequestUuid = wsRequestUuid;
         this.wsMethodName = wsMethodName;
         this.requestTimeStart = requestTimeStart;
@@ -156,7 +156,7 @@ public class KycStatusEntity {
         this.serverName = serverName;
     }
 
-    public KycStatusEntity() {
+    public WebServiceStatusEntity() {
 
     }
 

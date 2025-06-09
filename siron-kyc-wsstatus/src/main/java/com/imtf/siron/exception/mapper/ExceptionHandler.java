@@ -1,10 +1,10 @@
-package com.keydemo.exception.mapper;
+package com.imtf.siron.exception.mapper;
 
-import com.keydemo.dto.ResponseError;
-import com.keydemo.exception.BadRequestException;
-import com.keydemo.exception.ConflictException;
-import com.keydemo.exception.NoContentException;
-import com.keydemo.exception.NotFoundException;
+import com.imtf.siron.dto.ResponseError;
+import com.imtf.siron.exception.BadRequestException;
+import com.imtf.siron.exception.ConflictException;
+import com.imtf.siron.exception.NoContentException;
+import com.imtf.siron.exception.NotFoundException;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;

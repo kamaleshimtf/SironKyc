@@ -5,6 +5,7 @@ import com.imtf.siron.service.WebServiceStatusService;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.jboss.resteasy.reactive.RestResponse;
 import org.slf4j.Logger;
@@ -13,12 +14,14 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 @Path("/api/v1/wsstatus")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class WebServiceStatusController {
 
-    private Logger logger = LoggerFactory.getLogger(WebServiceStatusController.class);
+    private final Logger logger = LoggerFactory.getLogger(WebServiceStatusController.class);
 
     @Inject
-    WebServiceStatusService webServiceStatusService;
+    private WebServiceStatusService webServiceStatusService;
 
     @GET
     @RolesAllowed({"admin","user"})

@@ -23,7 +23,7 @@ public class WebServiceStatusEntity {
     public String requestTimeEnd;
 
     @Column(name = "RETURNCODE", columnDefinition = "INT")
-    public int returnCode;
+    public Integer returnCode;
 
     @Column(name = "SCORING_TIME_START", columnDefinition = "NCHAR (17)")
     public String scoringTimeStart;

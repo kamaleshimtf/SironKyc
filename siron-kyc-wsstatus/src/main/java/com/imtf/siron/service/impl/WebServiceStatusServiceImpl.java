@@ -19,18 +19,21 @@ import java.util.List;
 @ApplicationScoped
 public class WebServiceStatusServiceImpl implements WebServiceStatusService {
 
-    private Logger logger = LoggerFactory.getLogger(WebServiceStatusServiceImpl.class);
+    private final Logger logger = LoggerFactory.getLogger(WebServiceStatusServiceImpl.class);
 
     @Inject
     private WebServiceStatusRepository webServiceStatusRepository;
 
     public List<WebServiceStatusEntity> getAllWebServiceStatus() {
+
         List<WebServiceStatusEntity> allWebServiceStatus = webServiceStatusRepository.listAll();
         logger.info("Inside Service : Get All Web Service Status");
+
         if (allWebServiceStatus.isEmpty()) {
             logger.error("Inside Service : Webservice status data is empty, throwing NoContentException");
             throw new NoContentException("Webservice status data is empty");
         }
+
         return allWebServiceStatus;
     }
 

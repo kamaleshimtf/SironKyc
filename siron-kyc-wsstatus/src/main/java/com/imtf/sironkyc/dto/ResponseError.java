@@ -1,4 +1,4 @@
-package com.imtf.siron.dto;
+package com.imtf.sironkyc.dto;
 
 public class ResponseError {
 

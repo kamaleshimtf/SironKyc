@@ -1,4 +1,4 @@
-package com.imtf.siron.exception;
+package com.imtf.sironkyc.exception;
 
 public class ConflictException extends RuntimeException {
     public ConflictException(String message) {

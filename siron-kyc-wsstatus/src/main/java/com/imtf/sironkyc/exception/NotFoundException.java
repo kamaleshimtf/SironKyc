@@ -1,4 +1,4 @@
-package com.imtf.siron.exception;
+package com.imtf.sironkyc.exception;
 
 public class NotFoundException extends RuntimeException {
     public NotFoundException(String message) {

@@ -1,7 +1,7 @@
-package com.imtf.siron.controller;
+package com.imtf.sironkyc.controller;
 
-import com.imtf.siron.entity.WebServiceStatusEntity;
-import com.imtf.siron.service.WebServiceStatusService;
+import com.imtf.sironkyc.entity.WebServiceStatusEntity;
+import com.imtf.sironkyc.service.WebServiceStatusService;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
@@ -26,15 +26,29 @@ public class WebServiceStatusController {
     @GET
     @RolesAllowed({"admin","user"})
     public Response getAllWebServiceStatus() {
+
         logger.info("Inside Controller : Getting all web service status");
-        List<WebServiceStatusEntity> wsStatus = webServiceStatusService.getAllWebServiceStatus();
-        return Response.ok(wsStatus).build();
+        List<WebServiceStatusEntity> webServiceStatusList = webServiceStatusService.getAllWebServiceStatus();
+
+        if (webServiceStatusList.isEmpty()) {
+            logger.info("Inside Controller : WebService Status List is empty");
+            return Response.status(Response.Status.NO_CONTENT).build();
+        }
+
+        return Response.ok(webServiceStatusList).build();
     }
 
     @POST
     @RolesAllowed("admin")
     public Response addWebServiceStatus(WebServiceStatusEntity webServiceStatusEntity) {
         logger.info("Inside Controller : adding new web service status");
+
+        if (webServiceStatusEntity == null) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Web Service Status entity is Empty")
+                    .build();
+        }
+
         return Response.status(RestResponse.Status.CREATED.getStatusCode())
                 .entity(webServiceStatusService.addWebServiceStatus(webServiceStatusEntity))
                 .build();
@@ -43,7 +57,15 @@ public class WebServiceStatusController {
     @PUT
     @RolesAllowed("admin")
     public Response updateWebServiceStatus(@QueryParam("requestUUID") String requestUUID, WebServiceStatusEntity webServiceStatusEntity) {
+
         logger.info("Inside Controller : updating web service status");
+
+        if (requestUUID == null || webServiceStatusEntity == null) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("RequestUUID or WebServiceStatusEntity is Empty")
+                    .build();
+        }
+
         return Response.ok(webServiceStatusService.updateWebServiceStatus(requestUUID, webServiceStatusEntity)).build();
     }
 

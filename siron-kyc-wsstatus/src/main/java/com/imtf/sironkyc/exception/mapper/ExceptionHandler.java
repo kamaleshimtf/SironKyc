@@ -1,10 +1,9 @@
-package com.imtf.siron.exception.mapper;
+package com.imtf.sironkyc.exception.mapper;
 
-import com.imtf.siron.dto.ResponseError;
-import com.imtf.siron.exception.BadRequestException;
-import com.imtf.siron.exception.ConflictException;
-import com.imtf.siron.exception.NoContentException;
-import com.imtf.siron.exception.NotFoundException;
+import com.imtf.sironkyc.dto.ResponseError;
+import com.imtf.sironkyc.exception.BadRequestException;
+import com.imtf.sironkyc.exception.ConflictException;
+import com.imtf.sironkyc.exception.NotFoundException;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
@@ -18,11 +17,6 @@ public class ExceptionHandler implements ExceptionMapper<Exception> {
            return Response
                    .status(Response.Status.BAD_REQUEST)
                    .entity(new ResponseError(exception.getMessage()))
-                   .build();
-       }
-       else if(exception instanceof NoContentException){
-           return Response
-                   .status(Response.Status.NO_CONTENT)
                    .build();
        }
        else if(exception instanceof NotFoundException){

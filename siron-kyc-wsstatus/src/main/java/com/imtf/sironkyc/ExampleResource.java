@@ -1,4 +1,4 @@
-package com.imtf.siron;
+package com.imtf.sironkyc;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;

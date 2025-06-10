@@ -1,6 +1,6 @@
-package com.imtf.siron.repository;
+package com.imtf.sironkyc.repository;
 
-import com.imtf.siron.entity.WebServiceStatusEntity;
+import com.imtf.sironkyc.entity.WebServiceStatusEntity;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 

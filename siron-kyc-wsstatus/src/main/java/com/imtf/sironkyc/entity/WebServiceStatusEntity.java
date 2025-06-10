@@ -1,4 +1,4 @@
-package com.imtf.siron.entity;
+package com.imtf.sironkyc.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,6 +24,9 @@ public class WebServiceStatusEntity {
 
     @Column(name = "RETURNCODE", columnDefinition = "INT")
     public Integer returnCode;
+
+    @Column(name = "SCORING_DIR", columnDefinition = "NCHAR (16)")
+    public String scoringDir;
 
     @Column(name = "SCORING_TIME_START", columnDefinition = "NCHAR (17)")
     public String scoringTimeStart;
@@ -132,6 +135,14 @@ public class WebServiceStatusEntity {
         this.serverName = serverName;
     }
 
+    public String getScoringDir() {
+        return scoringDir;
+    }
+
+    public void setScoringDir(String scoringDir) {
+        this.scoringDir = scoringDir;
+    }
+
     public WebServiceStatusEntity(String wsRequestUuid,
                                   String wsMethodName,
                                   String requestTimeStart,
@@ -142,7 +153,7 @@ public class WebServiceStatusEntity {
                                   String relatingCustomers,
                                   String asyncRequestId,
                                   Integer tbqFormId,
-                                  String serverName) {
+                                  String serverName, String scoringDir) {
         this.wsRequestUuid = wsRequestUuid;
         this.wsMethodName = wsMethodName;
         this.requestTimeStart = requestTimeStart;
@@ -154,6 +165,7 @@ public class WebServiceStatusEntity {
         this.asyncRequestId = asyncRequestId;
         this.tbqFormId = tbqFormId;
         this.serverName = serverName;
+        this.scoringDir = scoringDir;
     }
 
     public WebServiceStatusEntity() {

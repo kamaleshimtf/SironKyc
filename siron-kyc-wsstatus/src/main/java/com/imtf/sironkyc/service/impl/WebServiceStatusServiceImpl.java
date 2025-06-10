@@ -1,13 +1,12 @@
-package com.imtf.siron.service.impl;
+package com.imtf.sironkyc.service.impl;
 
-import com.imtf.siron.dto.ResponseError;
-import com.imtf.siron.entity.WebServiceStatusEntity;
-import com.imtf.siron.exception.BadRequestException;
-import com.imtf.siron.exception.ConflictException;
-import com.imtf.siron.exception.NoContentException;
-import com.imtf.siron.exception.NotFoundException;
-import com.imtf.siron.repository.WebServiceStatusRepository;
-import com.imtf.siron.service.WebServiceStatusService;
+import com.imtf.sironkyc.dto.ResponseError;
+import com.imtf.sironkyc.entity.WebServiceStatusEntity;
+import com.imtf.sironkyc.exception.BadRequestException;
+import com.imtf.sironkyc.exception.ConflictException;
+import com.imtf.sironkyc.exception.NotFoundException;
+import com.imtf.sironkyc.repository.WebServiceStatusRepository;
+import com.imtf.sironkyc.service.WebServiceStatusService;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -25,25 +24,12 @@ public class WebServiceStatusServiceImpl implements WebServiceStatusService {
     private WebServiceStatusRepository webServiceStatusRepository;
 
     public List<WebServiceStatusEntity> getAllWebServiceStatus() {
-
-        List<WebServiceStatusEntity> allWebServiceStatus = webServiceStatusRepository.listAll();
         logger.info("Inside Service : Get All Web Service Status");
-
-        if (allWebServiceStatus.isEmpty()) {
-            logger.error("Inside Service : Webservice status data is empty, throwing NoContentException");
-            throw new NoContentException("Webservice status data is empty");
-        }
-
-        return allWebServiceStatus;
+        return webServiceStatusRepository.listAll();
     }
 
     @Transactional
     public WebServiceStatusEntity updateWebServiceStatus(String requestUUID, WebServiceStatusEntity webServiceStatusEntity) {
-
-        if (webServiceStatusEntity == null) {
-            logger.error("Inside Service : Webservice status data is empty, throwing BadRequestException");
-            throw new BadRequestException("Webservice status entity is Empty");
-        }
 
         WebServiceStatusEntity oldWebServiceStatus = webServiceStatusRepository.find("wsRequestUuid", requestUUID).firstResult();
         if (oldWebServiceStatus == null) {
@@ -71,11 +57,6 @@ public class WebServiceStatusServiceImpl implements WebServiceStatusService {
 
     @Transactional
     public WebServiceStatusEntity addWebServiceStatus(WebServiceStatusEntity webServiceStatusEntity) {
-
-        if (webServiceStatusEntity == null) {
-            logger.error("Inside Service : Webservice status entity is Empty");
-            throw new BadRequestException("WebService status Entity is empty");
-        }
 
         WebServiceStatusEntity oldWebServiceStatus = webServiceStatusRepository.find("wsRequestUuid",
                 webServiceStatusEntity.getWsRequestUuid()).firstResult();

@@ -1,7 +1,7 @@
-package com.imtf.siron.service;
+package com.imtf.sironkyc.service;
 
-import com.imtf.siron.dto.ResponseError;
-import com.imtf.siron.entity.WebServiceStatusEntity;
+import com.imtf.sironkyc.dto.ResponseError;
+import com.imtf.sironkyc.entity.WebServiceStatusEntity;
 import java.util.List;
 
 public interface WebServiceStatusService {

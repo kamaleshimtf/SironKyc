@@ -27,7 +27,7 @@ services:
   quarkus:
     build:
       dockerfile: src/main/docker/Dockerfile.jvm
-    container_name: siron-quarkus-app
+    container_name: sironkyc-quarkus-app
     depends_on:
       - keycloak
       - sqlserver2022

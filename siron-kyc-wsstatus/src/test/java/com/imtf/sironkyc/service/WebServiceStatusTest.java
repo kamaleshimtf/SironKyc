@@ -1,7 +1,6 @@
 package com.imtf.sironkyc.service;
 
 import com.imtf.sironkyc.entity.WebServiceStatusEntity;
-import com.imtf.sironkyc.exception.BadRequestException;
 import com.imtf.sironkyc.repository.WebServiceStatusRepository;
 import com.imtf.sironkyc.service.impl.WebServiceStatusServiceImpl;
 import org.junit.jupiter.api.BeforeEach;

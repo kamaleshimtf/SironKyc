@@ -1,6 +1,7 @@
 package com.imtf.sironkyc.controller;
 
 import com.imtf.sironkyc.entity.WebServiceStatusEntity;
+import com.imtf.sironkyc.service.WebServiceStatusFileService;
 import com.imtf.sironkyc.service.WebServiceStatusService;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
@@ -10,8 +11,9 @@ import jakarta.ws.rs.core.Response;
 import org.jboss.resteasy.reactive.RestResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import java.io.File;
 import java.util.List;
+import static com.imtf.sironkyc.constant.WebServiceStatusFileConstant.WEB_SERVICE_STATUS_ZIP_FILE_NAME;
 
 @Path("/api/v1/wsstatus")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -23,8 +25,11 @@ public class WebServiceStatusController {
     @Inject
     private WebServiceStatusService webServiceStatusService;
 
+    @Inject
+    private WebServiceStatusFileService webServiceStatusFileService;
+
     @GET
-    @RolesAllowed({"admin","user"})
+    @RolesAllowed({"admin", "user"})
     public Response getAllWebServiceStatus() {
 
         logger.info("Inside Controller : Getting all web service status");
@@ -74,6 +79,27 @@ public class WebServiceStatusController {
     public Response deleteWebServiceStatus(@QueryParam("requestUUID") String requestUUID) {
         logger.info("Inside Controller : Deleting web service status");
         return Response.ok(webServiceStatusService.deleteWebServiceStatus(requestUUID)).build();
+    }
+
+    @GET
+    @Path("/file")
+    @Produces("application/zip")
+    public Response getAllWebServiceStatusFile() {
+        logger.info("Inside Controller : Getting all web service status file");
+
+        List<WebServiceStatusEntity> webServiceStatusList = webServiceStatusService.getAllWebServiceStatus();
+        String webServiceStatusFileCreate = webServiceStatusFileService.createWebServiceStatusFile(webServiceStatusList);
+        File webServiceStatusFile = new File(WEB_SERVICE_STATUS_ZIP_FILE_NAME);
+
+        if (!webServiceStatusFile.exists()) {
+            return Response.status(404)
+                    .entity("File not found")
+                    .build();
+        }
+
+        return Response.ok(webServiceStatusFile)
+                .header("Content-Disposition", "attachment; filename=\"" + WEB_SERVICE_STATUS_ZIP_FILE_NAME + "\"")
+                .build();
     }
 
 }

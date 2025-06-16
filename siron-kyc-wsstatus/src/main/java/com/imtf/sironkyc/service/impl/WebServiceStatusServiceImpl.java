@@ -2,7 +2,6 @@ package com.imtf.sironkyc.service.impl;
 
 import com.imtf.sironkyc.dto.ResponseError;
 import com.imtf.sironkyc.entity.WebServiceStatusEntity;
-import com.imtf.sironkyc.exception.BadRequestException;
 import com.imtf.sironkyc.exception.ConflictException;
 import com.imtf.sironkyc.exception.NotFoundException;
 import com.imtf.sironkyc.repository.WebServiceStatusRepository;

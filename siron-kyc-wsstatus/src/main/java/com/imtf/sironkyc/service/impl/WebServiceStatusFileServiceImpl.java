@@ -79,7 +79,7 @@ public class WebServiceStatusFileServiceImpl implements WebServiceStatusFileServ
             return webServiceStatusFileToZip();
         }
         catch (Exception e) {
-            logger.error("Inside Service : Exception occured while writing web service status file {}",
+            logger.error("Inside Service : Exception occurred while writing web service status file {}",
                     e.getMessage());
         }
 
@@ -116,7 +116,7 @@ public class WebServiceStatusFileServiceImpl implements WebServiceStatusFileServ
             return webServiceStatusFile.getAbsolutePath();
         }
         catch (Exception e) {
-            logger.error("Inside Service : Exception occured while Converting web service status Zip file {}",
+            logger.error("Inside Service : Exception occurred while Converting web service status Zip file {}",
                     e.getMessage());
         }
         return "Zip file does not exist. Nothing to zip";

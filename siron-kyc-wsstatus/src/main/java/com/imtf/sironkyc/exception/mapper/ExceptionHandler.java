@@ -1,9 +1,7 @@
 package com.imtf.sironkyc.exception.mapper;
 
 import com.imtf.sironkyc.dto.ResponseError;
-import com.imtf.sironkyc.exception.BadRequestException;
-import com.imtf.sironkyc.exception.ConflictException;
-import com.imtf.sironkyc.exception.NotFoundException;
+import com.imtf.sironkyc.exception.*;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
@@ -28,6 +26,12 @@ public class ExceptionHandler implements ExceptionMapper<Exception> {
        else if(exception instanceof ConflictException){
            return Response
                    .status(Response.Status.CONFLICT)
+                   .entity(new ResponseError(exception.getMessage()))
+                   .build();
+       }
+       else if(exception instanceof IOException){
+           return Response
+                   .status(Response.Status.FORBIDDEN)
                    .entity(new ResponseError(exception.getMessage()))
                    .build();
        }

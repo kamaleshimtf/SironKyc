@@ -1,16 +1,12 @@
 package com.imtf.sironkyc.service.impl;
 
-import com.imtf.sironkyc.controller.WebServiceStatusController;
 import com.imtf.sironkyc.entity.WebServiceStatusEntity;
+import com.imtf.sironkyc.exception.IOException;
 import com.imtf.sironkyc.service.WebServiceStatusFileService;
 import jakarta.enterprise.context.ApplicationScoped;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -26,7 +22,7 @@ public class WebServiceStatusFileServiceImpl implements WebServiceStatusFileServ
     File webServiceStatusFolder = new File(WEB_SERVICE_STATUS_FOLDER_NAME);
     File webServiceStatusFile = new File(webServiceStatusFolder, WEB_SERVICE_STATUS_FILE_NAME);
 
-    public String createWebServiceStatusFile(List<WebServiceStatusEntity> webServiceStatusEntityList){
+    public String createWebServiceStatusFile(List<WebServiceStatusEntity> webServiceStatusEntityList) throws IOException {
 
         try {
             if (webServiceStatusFile.exists()) {
@@ -46,6 +42,7 @@ public class WebServiceStatusFileServiceImpl implements WebServiceStatusFileServ
         catch (Exception e) {
             logger.error("Inside Service : Exception occurred while creating web service status file {}",
                     e.getMessage());
+            return "Error: " + e.getMessage();
         }
         return "File Not Found";
     }
@@ -81,9 +78,8 @@ public class WebServiceStatusFileServiceImpl implements WebServiceStatusFileServ
         catch (Exception e) {
             logger.error("Inside Service : Exception occurred while writing web service status file {}",
                     e.getMessage());
+            return "Error: " + e.getMessage();
         }
-
-        return "File Not Found";
     }
 
     public String webServiceStatusFileToZip(){
@@ -118,7 +114,7 @@ public class WebServiceStatusFileServiceImpl implements WebServiceStatusFileServ
         catch (Exception e) {
             logger.error("Inside Service : Exception occurred while Converting web service status Zip file {}",
                     e.getMessage());
+            return "Error: " + e.getMessage();
         }
-        return "Zip file does not exist. Nothing to zip";
     }
 }

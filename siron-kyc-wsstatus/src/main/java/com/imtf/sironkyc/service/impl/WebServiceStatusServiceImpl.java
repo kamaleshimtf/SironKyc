@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class WebServiceStatusServiceImpl implements WebServiceStatusService {
@@ -89,5 +90,12 @@ public class WebServiceStatusServiceImpl implements WebServiceStatusService {
         logger.info("Inside Service : Successfully deleted Web service status with WsRequestUuid: {}" , requestUUID);
 
         return new ResponseError("Deleted successfully : " + oldWebServiceStatus.getWsRequestUuid());
+    }
+
+    public List<WebServiceStatusEntity> getWebServiceStatusByReturnCode(Integer returnCode) {
+        logger.info("Inside Service : Get Web Service Status By Return Code");
+        return webServiceStatusRepository.listAll().stream()
+                .filter((webServiceStatusEntity) -> webServiceStatusEntity.getReturnCode().equals(returnCode))
+                .collect(Collectors.toList());
     }
 }

@@ -13,4 +13,6 @@ public interface WebServiceStatusService {
     WebServiceStatusEntity updateWebServiceStatus(String requestUUID, WebServiceStatusEntity webServiceStatusEntity);
 
     ResponseError deleteWebServiceStatus(String requestUUID);
+
+    List<WebServiceStatusEntity> getWebServiceStatusByReturnCode(Integer returnCode);
 }

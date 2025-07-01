@@ -102,4 +102,18 @@ public class WebServiceStatusController {
                 .build();
     }
 
+    @GET
+    @Path("/returncode")
+    public Response getWebServiceStatusReturnCodeWithReturnCode(@QueryParam("code") Integer returnCode) {
+
+        List<WebServiceStatusEntity> webServiceStatusList = webServiceStatusService.getWebServiceStatusByReturnCode(returnCode);
+         logger.info("Inside Controller : Getting web service status file");
+
+        if (webServiceStatusList.isEmpty()) {
+            logger.info("Inside Controller : WebService Status List with returncode is empty");
+            return Response.status(Response.Status.NO_CONTENT).build();
+        }
+        return Response.ok(webServiceStatusList).build();
+    }
+
 }
